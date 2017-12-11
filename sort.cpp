@@ -4,6 +4,10 @@
 #include "sortTestHelper.h"
 using namespace std;
 
+/* Selection Sort
+ * Always select the minimum value of unsorted array
+ * Then add it to the tail of sorted array
+ */
 template<typename T>
 void selectionSort(T arr[], int n) {
     for (int i = 0; i < n; ++i) {
@@ -15,6 +19,11 @@ void selectionSort(T arr[], int n) {
     }
 }
 
+/* Insertion Sort
+ * Always comparing the current value with the previous value
+ * Then insert it in the proper position
+ * This means that the array before current position is always ordered
+ */
 template<typename T>
 void insertionSort(T arr[], int n) {
     for (int i = 1; i < n; ++i) {
@@ -27,6 +36,10 @@ void insertionSort(T arr[], int n) {
     }
 }
 
+/* Improved Insertion Sort
+ * The insertion sort mention above is time-consuming, since we use swap operation for many times
+ * The improved insertion sort uses move operation instead of swap operation, so it is more time-saving.
+ */
 template<typename T>
 void insertionSortImproved(T arr[], int n) {
     for (int i = 1; i < n; ++i) {
