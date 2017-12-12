@@ -18,6 +18,19 @@ namespace SortTestHelper {
         return arr;
     }
 
+    int* generateNearlyOrderedArray(int n, int swapTimes) {
+        int *arr = new int[n];
+        for (int i = 0; i < n; ++i) {
+            arr[i] = i;
+        }
+        srand(time(NULL));
+        for(int i = 0; i < swapTimes; ++i) {
+            int x1 = rand() % n;
+            int x2 = rand() % n;
+            swap(arr[x1], arr[x2]);
+        }
+    }
+
     void printArray(int arr[], int n) {
         for (int i = 0; i < n; ++i) {
             cout << arr[i] << ' ';
