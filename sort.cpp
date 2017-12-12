@@ -54,8 +54,13 @@ void insertionSortImproved(T arr[], int n) {
     }
 }
 
+/* Bubble Sort
+ * Compared the value of adjacent element and swap the larger one to the back
+ * This algorithm always put the maximal element int the end
+ */
 template<typename T>
 void bubbleSort(T arr[], int n) {
+    // Outer loop control the right edge
     for (int i = n; i > 0; --i) {
         for (int j = 1; j < i; ++j) {
             if (arr[j] < arr[j-1]) swap(arr[j], arr[j-1]);
@@ -63,10 +68,15 @@ void bubbleSort(T arr[], int n) {
     }
 }
 
+/* Improved Bubble Sort
+ * The bubble sort always find the maximal value before current position and put it on the current position
+ * If there are no any swap operation after current, we can know that the array after current position is ordered.
+ * Therefore, the next right boundary is current position, which improve the basic bubble sort method;
+ * Besides, the time complexity is O(n) if the array is ordered, since it doesn't need any swap operation in this situation.
+ */
 template<typename T>
 void bubbleSortImproved(T arr[], int n) {
     while (n > 1) {
-        cout << n << endl;
         int newn = 0;
         for (int j = 1; j < n; ++j) {
             if (arr[j] < arr[j-1]) {
@@ -78,16 +88,36 @@ void bubbleSortImproved(T arr[], int n) {
     }
 }
 
+/* Shell Sort
+ * Choose a step length h and divide the array into h groups
+ * Then use insertion sort for each group
+ * reduce h and repeat the operations above until h = 1
+ * We can see that shell sort is also an improved method based on insertion sort
+ * And this method achieves the best performance among the four methods (Selection, Insertion, Bubble)
+ */
 template<typename T>
 void shellSort(T arr[], int n) {
-
+    int h = 1;
+    while (h < n/3) h = 3 * h + 1;
+    while (h >= 1) {
+        for (int i = h; i < n; ++i) {
+            // use insertion sort for arr[i], arr[i-h], arr[i-2*h]
+            T e = arr[i];
+            int j = i;
+            for (; j >= h && e < arr[j-h]; j -= h) {
+                arr[j] = arr[j-h];
+            }
+            arr[j] = e;
+        }
+        h /= 3;
+    }
 }
 
 
 int main() {
     int n = 100;
     int *arr = SortTestHelper::generateRandomArray(n, 0, n);
-    SortTestHelper::testSort("Bubble Sort", bubbleSortImproved, arr, n);
+    SortTestHelper::testSort("Shell Sort", shellSort, arr, n);
     delete[] arr;
     return 0;
 }
