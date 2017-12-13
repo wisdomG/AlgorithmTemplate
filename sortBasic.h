@@ -25,7 +25,7 @@ void selectionSort(T arr[], int n) {
  * This means that the array before current position is always ordered
  */
 template<typename T>
-void insertionSort(T arr[], int n) {
+void insertionSortBasic(T arr[], int n) {
     for (int i = 1; i < n; ++i) {
         for (int j = i; j > 0; --j) {
             if (arr[j] < arr[j-1])
@@ -43,11 +43,23 @@ void insertionSort(T arr[], int n) {
  * The time complexity is O(n) if the array is ordered
  */
 template<typename T>
-void insertionSortImproved(T arr[], int n) {
+void insertionSort(T arr[], int n) {
     for (int i = 1; i < n; ++i) {
         T e = arr[i];
-        int j;
-        for (j = i; j > 0 && arr[j-1] > e; --j) {
+        int j = i;
+        for (; j > 0 && arr[j-1] > e; --j) {
+            arr[j] = arr[j-1];
+        }
+        arr[j] = e;
+    }
+}
+// sort arr[l, r]
+template<typename T>
+void insertionSort(T arr[], int l, int r) {
+    for (int i = l + 1; i <= r; ++i) {
+        T e = arr[i];
+        int j = i;
+        for (; j > l && arr[j-1] > e; --j) {
             arr[j] = arr[j-1];
         }
         arr[j] = e;
