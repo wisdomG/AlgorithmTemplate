@@ -51,6 +51,7 @@ public:
         for (int i = 0; i < n; ++i)
             data[i+1] = arr[i];
         cnt = n;
+        // index cnt/2 is the position of last non-leaf node
         for (int i = cnt/2; i >= 1; --i)
             shiftDown(i);
     }
