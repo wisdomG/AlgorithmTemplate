@@ -5,7 +5,7 @@
 #include "shell_sort.h"
 #include "merge_sort.h"
 #include "quick_sort.h"
-#include "../Heap/heap.h"
+#include "heap_sort.h"
 #include "sort_test_helper.h"
 using namespace std;
 
@@ -37,6 +37,8 @@ void testSort() {
     testCase(BasicArray, "    Shell Sort", shellSort);
     testCase(BasicArray, "    Merge Sort", mergeSort);
     testCase(BasicArray, "    Quick Sort", quickSort);
+    testCase(BasicArray, "  Quick Sort 3", quickSort);
+    testCase(BasicArray, "     Heap Sort", heapSort);
 
     cout << "============NearlyOrderedArray=========" << endl;
     testCase(NearlyOrderedArray, "Selection Sort", selectionSort);
@@ -45,6 +47,8 @@ void testSort() {
     testCase(NearlyOrderedArray, "    Shell Sort", shellSort);
     testCase(NearlyOrderedArray, "    Merge Sort", mergeSort);
     testCase(NearlyOrderedArray, "    Quick Sort", quickSort);
+    testCase(NearlyOrderedArray, "  Quick Sort 3", quickSort);
+    testCase(NearlyOrderedArray, "     Heap Sort", heapSort);
 
     cout << "============RepeatingArray=============" << endl;
     testCase(RepeatingArray, "Selection Sort", selectionSort);
@@ -53,7 +57,8 @@ void testSort() {
     testCase(RepeatingArray, "    Shell Sort", shellSort);
     testCase(RepeatingArray, "    Merge Sort", mergeSort);
     testCase(RepeatingArray, "    Quick Sort", quickSort);
-    testCase(RepeatingArray, "Quick Sort 3 Ways", quickSort3Ways);
+    testCase(RepeatingArray, "  Quick Sort 3", quickSort3Ways);
+    testCase(RepeatingArray, "     Heap Sort", heapSort);
 
 }
 
