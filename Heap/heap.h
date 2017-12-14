@@ -17,13 +17,14 @@ private:
     int cnt;
     int capacity;
 
+    // Shife Up, comparing with the parent node
     void shiftUp(int k) {
         while (k > 1 && data[k/2] < data[k]) {
             swap(data[k/2], data[k]);
             k /= 2;
         }
     }
-
+    // Shift Down, comparing with the child node
     void shiftDown(int k) {
         while (k * 2 <= cnt) {
             int j = k * 2; //record the position that may swap with k
@@ -43,6 +44,7 @@ public:
         this->capacity = capacity;
     }
     // heapify O(n)
+    // Since we heapify the heap using half of nodes
     MaxHeap(T arr[], int n) {
         data = new T[n+1];
         capacity = n;
@@ -56,6 +58,7 @@ public:
     int size() { return cnt; }
     bool empty() { return cnt == 0; }
 
+    // insert into last position and adjust heap with shiftUp
     void insert(T item) {
         assert(cnt + 1 <= this->capacity);
         data[cnt + 1] = item;
@@ -63,6 +66,7 @@ public:
         shiftUp(cnt);
     }
 
+    // return the maximal element, the use the last element as the top of heap and adjust it with shiftDown
     T extractMax() {
         assert(cnt > 0);
         T item = data[1];
