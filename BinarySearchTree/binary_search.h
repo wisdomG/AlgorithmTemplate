@@ -2,8 +2,11 @@
 #define BINARY_SEARCH_H
 
 #include <iostream>
+#include <cassert>
 using namespace std;
 
+/* binarySearch
+ */
 template<typename T>
 int binarySearch(T arr[], int n, T target) {
     int l = 0, r = n - 1;
@@ -16,17 +19,55 @@ int binarySearch(T arr[], int n, T target) {
     return -1;
 }
 
+/* binarySearch
+ * recurrence function
+ */
 template<typename T>
-__binary_search(T arr[], int l, int r, T target) {
-
+int __binary_search(T arr[], int l, int r, T target) {
+    if (l > r) return -1;
+    int mid = l + (r-l)/2;
+    if (arr[mid] == target) return mid;
+    else if (arr[mid] > target)
+        return __binary_search(arr, l, mid-1, target);
+    else
+        return __binary_search(arr, mid+1, r, target);
 }
 
+/* binarySearch recurrence version
+ */
 template<typename T>
 int binarySearch2(T arr[], int n, T target) {
-    __binary_search(arr, 0, n, target);
+    return  __binary_search(arr, 0, n-1, target);
 }
 
+template<typename T>
+int floor(T arr[], int n, T target) {
+    int l = 0, r = n - 1;
+    while (l <= r) {
+        if ( l == r || l + 1 = r ) {
+            while (r >= 0 && arr[r] >= target) --r;
+            return r;
+        }
+        int mid = l + (r-l) / 2;
+        if (arr[mid] >= target)
+            r = mid - 1;
+        else l = mid;
+    }
+}
 
-// floor and ceil
-// floor 返回比tar小的数的最后位置，ceil返回比tar大的最开始位置
+template<typename T>
+int ceil(T arr[], int n, T target) {
+    int l = 0, r = n - 1;
+    while (l <= r) {
+        if (l == r || l + 1 == r) {
+            while (l < n && arr[l] <= target) ++l;
+            return l;
+        }
+        int mid = l + (r-l) / 2;
+        if (arr[mid] <= target)
+            l = mid + 1;
+        else r = mid;
+    }
+}
+
 #endif
