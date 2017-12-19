@@ -33,18 +33,23 @@ int __binary_search(T arr[], int l, int r, T target) {
         return __binary_search(arr, mid+1, r, target);
 }
 
-/* binarySearch recurrence version
+/* binarySearch
+ * recurrence version
  */
 template<typename T>
 int binarySearch2(T arr[], int n, T target) {
     return  __binary_search(arr, 0, n-1, target);
 }
 
+/* floor
+ * return the index of lash element less than target
+ * if there are no elements less than target, then return -1;
+ */
 template<typename T>
 int floor(T arr[], int n, T target) {
     int l = 0, r = n - 1;
     while (l <= r) {
-        if ( l == r || l + 1 = r ) {
+        if ( l == r || l + 1 == r ) {
             while (r >= 0 && arr[r] >= target) --r;
             return r;
         }
@@ -55,6 +60,10 @@ int floor(T arr[], int n, T target) {
     }
 }
 
+/* ceil
+ * return the index of first element greater than target
+ * if there are no elements greater than target, then return n
+ */
 template<typename T>
 int ceil(T arr[], int n, T target) {
     int l = 0, r = n - 1;
