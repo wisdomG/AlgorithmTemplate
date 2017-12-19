@@ -17,6 +17,12 @@ private :
             this->value = value;
             this->left = this->right = NULL;
         }
+        Node(Node *node) {
+            this->key = node->key;
+            this->value = node->value;
+            this->left = node->left;
+            this->right = node->right;
+        }
     };
 
     Node *root;
@@ -96,6 +102,72 @@ private :
         }
     }
 
+    Key __minimum(Node *node) {
+        if (node->left == NULL)
+            return node->key;
+        return __minimum(node->left);
+    }
+
+    Key __maximum(Node *node) {
+        if (node->right == NULL)
+            return node->key;
+        return __maximum(node->right);
+    }
+
+    Node* __removeMin(Node *node) {
+        if (root->left == NULL) {
+            Node *rightNode = node->right;
+            delete node;
+            --count;
+            return rightNode;
+        }
+        node->left = __removeMin(node->left);
+        return node;
+    }
+
+    Node* __removeMax(Node *node) {
+        if (root->right == NULL) {
+            Node *leftNode = node->left;
+            delete node;
+            --count;
+            return leftNode;
+        }
+        node->right = __removeMin(node->right);
+        return node;
+    }
+
+    Node* __remove(Node *node, Key key) {
+        if (node == NULL) return NULL;
+        if (key < node->key) {
+            node->left = __remove(node->left, key);
+            return node;
+        } else if (key > node->key) {
+            node->right = __remove(node->right, key);
+            return node;
+        } else {
+            if (node->left == NULL) {
+                Node *rightNode = node->right;
+                delete node;
+                --count;
+                return rightNode;
+            }
+            if (node->right == NULL) {
+                Node *leftNode = node->left;
+                delete node;
+                --count;
+                return leftNode;
+            }
+            // leftchild and rightchild != NULL
+            Node *successor =  new Node(__minimum(node->right));
+            //++count;
+            successor->right = __removeMin(node->right);
+            successor->left = node->left;
+            delete node;
+            //--count;
+            return successor;
+        }
+    }
+
 public:
     BinarySearchTree() {
         root = NULL;
@@ -133,6 +205,32 @@ public:
 
     void levelOrder() {
         __levelOrder();
+    }
+
+    Key minimum() {
+        assert(root != NULL);
+        Node *node = __minimum(root);
+        return node->key;
+    }
+
+    Key maximum() {
+        assert(root != NULL);
+        Node *node = __maximum(root);
+        return node->key;
+    }
+
+    void removeMin() {
+        assert(root != NULL);
+        root = __removeMin(root);
+    }
+
+    void removeMax() {
+        assert(root != NULL);
+        root = __removeMax(root);
+    }
+
+    void remove(Key key) {
+        __remove(root, key);
     }
 
 };
