@@ -17,6 +17,7 @@ private :
             this->value = value;
             this->left = this->right = NULL;
         }
+        // copy constructor
         Node(Node *node) {
             this->key = node->key;
             this->value = node->value;
@@ -27,7 +28,7 @@ private :
 
     Node *root;
     int count; // #Nodes
-
+    // insert a new node recursively and maintain the tree
     Node* __insert(Node *node, Key key, Value value) {
         if (node == NULL) {
             count ++;
@@ -40,11 +41,8 @@ private :
             node->left = __insert(node->left, key, value);
         return node;
     }
-    //.non recurrence
-    Node* __insert2(Node *node, Key key, Value value) {
 
-    }
-
+    // judge if the tree contain the key recursively
     bool __contain(Node *node, Key key) {
         if (node == NULL) return false;
         if (key == node->key) return true;
@@ -54,6 +52,8 @@ private :
             return __contain(node->left, key);
     }
 
+    // return the pointer of the value corresponding the key
+    // we can use this pointer to access and modify the value
     Value* __search(Node *node, Key key) {
         if (node == NULL) return NULL;
         if (key == node->key) return &(node->value);
@@ -81,6 +81,7 @@ private :
         cout << node->key << endl;
     }
 
+    // destroy the tree recursively
     void __destroy(Node *node) {
         if (node != NULL) {
             __destroy(node->left);
@@ -90,6 +91,7 @@ private :
         }
     }
 
+    // lever Order using queue
     void __levelOrder() {
         queue<Node*> q;
         q.push(root);
@@ -102,18 +104,21 @@ private :
         }
     }
 
+    // return the minimum key recursively
     Key __minimum(Node *node) {
         if (node->left == NULL)
             return node->key;
         return __minimum(node->left);
     }
 
+    // return the maximum key recursively
     Key __maximum(Node *node) {
         if (node->right == NULL)
             return node->key;
         return __maximum(node->right);
     }
 
+    // remove the node with minimum key
     Node* __removeMin(Node *node) {
         if (root->left == NULL) {
             Node *rightNode = node->right;
@@ -125,6 +130,7 @@ private :
         return node;
     }
 
+    // remove the node with maximum key
     Node* __removeMax(Node *node) {
         if (root->right == NULL) {
             Node *leftNode = node->left;
@@ -136,6 +142,7 @@ private :
         return node;
     }
 
+    // remove the node with specified key
     Node* __remove(Node *node, Key key) {
         if (node == NULL) return NULL;
         if (key < node->key) {
@@ -157,7 +164,7 @@ private :
                 --count;
                 return leftNode;
             }
-            // leftchild and rightchild != NULL
+            // left != NULL and right != NULL
             Node *successor =  new Node(__minimum(node->right));
             //++count;
             successor->right = __removeMin(node->right);
@@ -169,16 +176,19 @@ private :
     }
 
 public:
+    // constructor
     BinarySearchTree() {
         root = NULL;
         count = 0;
     }
+    // destructor
     ~BinarySearchTree() {
         __destroy(root);
     }
     int size() { return count; }
     bool empty() { return count == 0; } // return root == NULL}
 
+    // public member function calling the private member function
     void insert(Key key, Value value) {
         root = __insert(root, key, value);
     }
