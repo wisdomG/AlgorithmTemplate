@@ -11,6 +11,8 @@ private :
         Value value;
         Node *left;
         Node *right;
+        // int total; // the total number of tree whose root is current node
+        // int cnt; // the number of repeats
 
         Node(Key key, Value value) {
             this->key = key;
@@ -242,5 +244,7 @@ public:
     void remove(Key key) {
         __remove(root, key);
     }
+
+    // floor, ceil, rank, select, precursor, successor,
 
 };
