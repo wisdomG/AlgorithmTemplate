@@ -2,6 +2,9 @@
 #include <vector>
 using namespace std;
 
+/* DenseGraph
+ * represent the dense graph using adjacent matrix
+ */
 class DenseGraph{
 private:
     int v, e;
@@ -31,6 +34,16 @@ public:
         return graph[v1][v2];
     }
 
+    void show() {
+        for (int i = 0; i < v; ++i) {
+            cout << i << " : ";
+            for(int j = 0; j < v; ++j) {
+                cout << graph[i][j] << ' ';
+            }
+            cout << endl;
+        }
+    }
+
     class adjIterator{
     private:
         DenseGraph &G;
@@ -55,5 +68,6 @@ public:
             return (index >= G.V());
         }
     };
+
 
 };

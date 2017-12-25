@@ -2,6 +2,9 @@
 #include <vector>
 using namespace std;
 
+/* SparseGraph
+ * represent sparse graph using adjacent list
+ */
 class SparseGraph {
 private:
     int v, e;
@@ -30,6 +33,16 @@ public:
         for (int i = 0; i < graph[v1].size(); ++i)
             if (graph[v1][i] == v2) return true;
         return false;
+    }
+
+    void show() {
+        for(int i = 0; i < v; ++i) {
+            cout << i << " : ";
+            for(int j = 0; j < graph[i].size(); ++j) {
+                cout << graph[i][j] << ' ' ;
+            }
+            cout << endl;
+        }
     }
 
     class adjIterator{
