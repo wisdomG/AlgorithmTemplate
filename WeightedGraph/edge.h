@@ -18,11 +18,11 @@ public:
     Edge() {}
     ~Edge() {}
 
-    int getStart() { return a; }
-    int getEnd() { return b; }
-    Weight getWeight() {return weight; }
+    int getStart() const { return a; }
+    int getEnd() const { return b; }
+    Weight getWeight() const {return weight; }
 
-    int other(int x) {
+    int other(int x) const {
         assert(x == a || x == b);
         return x == a ? b : a;
     }
