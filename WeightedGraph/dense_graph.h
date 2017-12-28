@@ -3,7 +3,7 @@
 #include "edge.h"
 using namespace std;
 
-/* DenseGraph
+/* Weighted DenseGraph
  * represent the dense graph using adjacent matrix
  */
 template<typename Weight>
@@ -84,6 +84,5 @@ public:
             return (index >= G.V());
         }
     };
-
 
 };
