@@ -8,6 +8,8 @@
 #include <vector>
 using namespace std;
 
+/* Read a graph from a file
+ */
 template <typename Graph, typename Weight>
 class ReadGraph {
 private:
