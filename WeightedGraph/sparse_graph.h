@@ -3,7 +3,7 @@
 #include "edge.h"
 using namespace std;
 
-/* SparseGraph
+/* Weighted Sparse Graph
  * represent sparse graph using adjacent list
  */
 template<typename Weight>
