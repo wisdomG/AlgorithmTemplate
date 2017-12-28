@@ -11,6 +11,7 @@ using namespace std;
 /* Lazy Prime algorithm for Minimum Spanning Tree
  * Cut property: always choose the edge with minimum weight between two cuts
  * as an edge in the MST
+ * the time complexity = O(ElogE)
  */
 template<typename Graph, typename Weight>
 class LazyPrimeMST {
