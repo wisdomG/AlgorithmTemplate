@@ -67,6 +67,11 @@ public:
     Weight result() {
         return mstWeight;
     }
+
+    void showMST() {
+        for (int i = 0; i < mst.size(); ++i)
+            cout << mst[i] << endl;
+    }
 };
 
 #endif

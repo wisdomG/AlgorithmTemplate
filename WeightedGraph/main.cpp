@@ -4,6 +4,7 @@
 #include "dense_graph.h"
 #include "read_graph.h"
 #include "lazy_prime.h"
+#include "kruskal.h"
 using namespace std;
 
 const int n = 10;
@@ -16,11 +17,20 @@ int main() {
     ReadGraph<SparseGraph<double>, double> rg2(sg, "in.txt");
     sg.show();
 
+    cout << "Lazy_Prime" << endl;
     LazyPrimeMST<DenseGraph<double>, double> mst1(dg);
-    cout << "Total weights of minimum span tree : " << mst1.result() << endl;
-
+    cout << "DenseGraph: " << mst1.result() << endl;
     LazyPrimeMST<SparseGraph<double>, double> mst2(sg);
-    cout << "Total weights of minimum span tree : " << mst2.result() << endl;
+    cout << "SparseGraph: " << mst2.result() << endl;
+    mst1.showMST();
+
+    cout << "Kruskal" << endl;
+    KruskalMST<DenseGraph<double>, double> mst3(dg);
+    cout << "DenseGraph: " << mst3.result() << endl;
+    KruskalMST<SparseGraph<double>, double> mst4(sg);
+    cout << "SparseGraph: " << mst4.result() << endl;
+    mst3.showMST();
+
 
     return 0;
 }
