@@ -5,6 +5,9 @@
 #include <vector>
 using namespace std;
 
+/* Union Find
+ * implemented by myself
+ */
 class UnionFind{
 private:
     vector<int> par;
