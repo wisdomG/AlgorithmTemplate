@@ -8,7 +8,7 @@
 #include "edge.h"
 using namespace std;
 
-/* Minimum Span Tree based on Lazy Prime
+/* Lazy Prime algorithm for Minimum Spanning Tree
  * Cut property: always choose the edge with minimum weight between two cuts
  * as an edge in the MST
  */
