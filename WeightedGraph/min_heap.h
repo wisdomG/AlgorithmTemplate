@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-/* MinHeap
+/* MinHeap used for Minimum Spanning Tree
  * Implement by myself
  */
 template<typename T>
