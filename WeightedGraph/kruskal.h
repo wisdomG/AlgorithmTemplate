@@ -8,6 +8,10 @@
 #include "union_find.h"
 using namespace std;
 
+/* Kruskal algorithm for Minimum Spanning Tree
+ * Always choose the edge with minimum weight
+ * if there a loop, discard current edge and go on choose next edge
+ */
 template<typename Graph, typename Weight>
 class KruskalMST{
 private:
