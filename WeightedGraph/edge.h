@@ -5,6 +5,8 @@
 #include <cassert>
 using namespace std;
 
+/* Weighted Edge
+ */
 template<typename Weight>
 class Edge{
 private:
