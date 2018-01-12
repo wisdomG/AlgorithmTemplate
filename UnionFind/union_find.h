@@ -39,7 +39,7 @@ public:
     int find(int p) {
         assert(p >= 0 && p < count);
         if (p != parent[p]) {
-            parent[p] = find([parent[p]]);
+            parent[p] = find(parent[p]);
         }
         return parent[p];
     }
